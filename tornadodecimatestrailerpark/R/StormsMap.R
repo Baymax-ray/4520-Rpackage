@@ -1,9 +1,9 @@
 #'Plot storm tracks of selsected storms
 #'
-#'A function for plotting a map of storm tracks for a selection of storms names in a list.
+#'A function for plotting a map of storm tracks for a selection of storms ids in a vector.
 #'The map includes country and US state boundaries.
 #'
-#'@param ids
+#'@param ids id of the storm
 #'@return Null
 #'@example
 #'plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
@@ -23,6 +23,6 @@ plot_storm_tracks <- function(storm_data, storm_ids) {
     storm_subset <- selected_storms[selected_storms$id == storm_id, ]
 
     # Plot the storm track
-    lines(storm_subset$longtitude, storm_subset$latitude, col = "red", lwd = 2)
+    lines(storm_subset$longitude, storm_subset$latitude, col = "red", lwd = 2)
   }
 }
