@@ -7,7 +7,7 @@
 #'@return Null
 #'@example
 #'plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
-#'
+#'@export
 plot_storm_tracks <- function(storm_data, storm_ids) {
 
   # Filter the storm data to include only the selected storm_ids
