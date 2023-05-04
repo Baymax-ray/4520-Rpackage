@@ -10,5 +10,7 @@ data$V5= as.numeric(substr(data$V5,1,nchar(data$V5)-1))
 data$V6= -as.numeric(substr(data$V6,1,nchar(data$V6)-1))
 data[data == -999] <- NA
 data[data == -99] <- NA
-colnames(data)=c("id","name","date","time","record_identifier","status","latitude","longitude","max_wind","min_pressure","wind_radii_northeastern","wind_radii_southeastern","wind_radii_southwestern","wind_radii_northwestern","wind_radii_northeastern","wind_radii_southeastern","wind_radii_southwestern","wind_radii_northwestern","wind_radii_northeastern")
-save(data, file = "data.RData")
+colnames(data)=c("id","name","date","time","record_identifier","status","latitude","longitude","max_wind","min_pressure","wind_radii_northeastern","wind_radii_southeastern","wind_radii_southwestern","wind_radii_northwestern","wind_radii_northeastern","wind_radii_southeastern","wind_radii_southwestern","wind_radii_northwestern","wind_radii_northeastern","wind_radii_southeastern","wind_radii_southwestern","northwestern","radius_max_wind")
+row.names(data) <- 1 : nrow(data)
+head(data)
+save(data, file = "hurdat.RData")

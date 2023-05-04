@@ -6,8 +6,11 @@
 #' @format a dataframe with 53872 rows and 23 columns
 #' \describe{
 #'     \item{id}{id of the hurricane}
-#'     \item{name}{name of the hurricane}
-#'     \item{name}{latitude of city, in decimal degrees north}
-#'     \item{lon}{longitude of city, in decimal degrees east}
+#'     \item{name}{name of the hurricane,before 1950 referred to as “UNNAMED” }
+#'     \item{date}{year, month, day of the hurricane}
+#'     \item{time}{hours in UTC, minutes of the hurricane}
+#'     \item{record_identifier}{}
+#'     \item{latitude}{latitude of hurricane, in decimal degrees north}
+#'     \item{longitude}{longitude of hurricane, in decimal degrees east}
 #' }
 "hurdat"
