@@ -17,7 +17,7 @@ Interpolate30m<-function(storm_data){
   interpolated_data <- data.frame()
   for (storm_id in unique_storms){
     storm_subset <- storm_data[storm_data$id == storm_id, ]
-    storm_subset$datetime <- as.POSIXct(paste(storm_subset$date, storm_subset$time), format = format = "%Y%m%d %H%M")
+    storm_subset$datetime <- as.POSIXct(paste(storm_subset$date, storm_subset$time), format = "%Y%m%d %H%M")
     min_datetime <- min(storm_subset$datetime)
     max_datetime <- max(storm_subset$datetime)
     datetime_seq <- seq(from = min_datetime, to = max_datetime, by = "30 min")
