@@ -1,11 +1,22 @@
 Package: tornadodecimatestrailerpark
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Tropical Cyclone Data R Package
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author@R: person("Ray", "Fang", email = "fangjiarui2002@outlook.com",
+  role = c("aut", "cre")), person("Leqi", "Tian", email = "lt438@cornell.edu",
+  role = c("aut", "cre"))
+Description: an R package related to the HURDAT Atlantic basin tropical cyclone data (https://www.nhc.noaa.gov/data/#hurdat). 
+    A tropical cyclone is generic term for a strong circulating storm. A tropical storm is a weaker tropical cyclone, and a hurricane is a stronger tropical cyclone..
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
+Imports:
+    httr,
+    jsonlite
+RoxygenNote: 7.1.1
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr
