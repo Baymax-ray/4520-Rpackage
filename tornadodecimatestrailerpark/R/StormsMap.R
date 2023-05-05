@@ -14,7 +14,7 @@ plot_storm_tracks <- function(storm_data, storm_ids) {
   selected_storms <- storm_data[storm_data$id %in% storm_ids, ]
 
   # Create a base map with country and US state boundaries
-  map("state", interior = FALSE)
+  map("state", interior = TRUE)
   map("world", add = TRUE, interior = FALSE)
 
   # Loop through the unique storm names in the selected storms
