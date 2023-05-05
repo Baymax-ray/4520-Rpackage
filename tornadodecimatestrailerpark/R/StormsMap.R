@@ -12,10 +12,14 @@ plot_storm_tracks <- function(storm_data, storm_ids) {
 
   # Filter the storm data to include only the selected storm_ids
   selected_storms <- storm_data[storm_data$id %in% storm_ids, ]
+  # create error message if any of the storm_ids are not in the data
+  if (length(unique(selected_storms$id)) != length(storm_ids)) {
+    stop("One or more of the storm ids is not in the data")
+  }
 
   # Create a base map with country and US state boundaries
-  map("state", interior = TRUE)
-  map("world", add = TRUE, interior = FALSE)
+  map("world", interior = TRUE)
+  map("state", add = TRUE, interior = TRUE)
 
   # Loop through the unique storm names in the selected storms
   for (storm_id in unique(selected_storms$id)) {
