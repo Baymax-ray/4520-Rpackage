@@ -28,11 +28,9 @@ interpolate_storm_track_30m <- function(storm_data) {
 
     # Initialize an empty data frame for the current storm's interpolated data
     current_interpolated_data <- data.frame()
-    print(storm_id)
-    print("!")
+
     # Loop through the storm_subset data frame row by row
     for (i in 1:(nrow(storm_subset) - 1)) {
-      print(i)
       if (nrow(storm_subset)<=1){
         break
       }
@@ -78,7 +76,7 @@ interpolate_storm_track_30m <- function(storm_data) {
     # Append the interpolated data for the current storm to the final data frame
     interpolated_data <- rbind(interpolated_data, current_interpolated_data)
   }
-
+  interpolated_data$datetime<-NULL
   # Return the interpolated data
   return(interpolated_data)
 }
