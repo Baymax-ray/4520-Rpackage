@@ -23,47 +23,48 @@ interpolate_storm_track_30m <- function(storm_data) {
     # Subset the data for the current storm
     storm_subset <- storm_data[storm_data$id == storm_id, ]
 
-    # Ensure the data is sorted by date and time
-    storm_subset_sorted <- storm_subset[order(storm_subset$date, storm_subset$time), ]
-
     # Convert date and time to POSIXct
-    storm_subset_sorted$datetime <- as.POSIXct(paste(storm_subset_sorted$date, storm_subset_sorted$time), format = "%Y%m%d %H%M")
+    storm_subset$datetime <- as.POSIXct(paste(storm_subset$date, storm_subset$time), format = "%Y%m%d %H%M")
 
     # Initialize an empty data frame for the current storm's interpolated data
     current_interpolated_data <- data.frame()
     print(storm_id)
-
-    # Loop through the storm_subset_sorted data frame row by row
-    for (i in 1:(nrow(storm_subset_sorted) - 1)) {
-      if (nrow(storm_subset_sorted)<=1){
+    print("!")
+    # Loop through the storm_subset data frame row by row
+    for (i in 1:(nrow(storm_subset) - 1)) {
+      print(i)
+      if (nrow(storm_subset)<=1){
         break
       }
+      if (storm_subset$datetime[i + 1] <= storm_subset$datetime[i]) {
+        next
+      }
       # Create a sequence of datetimes at 30-minute intervals between current and next row
-      datetime_seq <- seq(from = storm_subset_sorted$datetime[i], to = storm_subset_sorted$datetime[i + 1], by = "30 min")
-
+      datetime_seq <- seq(from = storm_subset$datetime[i], to = storm_subset$datetime[i + 1], by = "30 min")
+      datetime_seq<-datetime_seq[-length(datetime_seq)]#remove the last element
       # Initialize an empty data frame for the current segment's interpolated data
       segment_interpolated_data <- data.frame(id = storm_id, datetime = datetime_seq)
 
-      # Loop through each column in the storm_subset_sorted data frame
-      for (column_name in colnames(storm_subset_sorted)) {
+      # Loop through each column in the storm_subset data frame
+      for (column_name in colnames(storm_subset)) {
         # Skip the 'id', and 'datetime' columns
         if (column_name %in% c("id", "datetime")) {
           next
         }
         else if (column_name %in% c("latitude", "longitude")){
           # Interpolate the 'latitude' and 'longitude'
-          interpolated_values <- approx(storm_subset_sorted$datetime[i:(i + 1)], storm_subset_sorted[[column_name]][i:(i + 1)], datetime_seq)$y
+          interpolated_values <- approx(storm_subset$datetime[i:(i + 1)], storm_subset[[column_name]][i:(i + 1)], datetime_seq)$y
         }
         #from datetime_seq extract time and date
         else if (column_name == "time") {
-            interpolated_values <- format(datetime_seq, "%H%M"))
+          interpolated_values <- format(datetime_seq, "%H%M")
         }
         else if (column_name == "date") {
-            interpolated_values <- format(datetime_seq, "%Y%m%d"))
+          interpolated_values <- format(datetime_seq, "%Y%m%d")
         }
         else{
           # for other columns, fill with the same value
-          interpolated_values <- rep(storm_subset_sorted[[column_name]][i], length(datetime_seq))
+          interpolated_values <- rep(storm_subset[[column_name]][i], length(datetime_seq))
         }
 
         # Add the interpolated values to the current segment's interpolated data frame
