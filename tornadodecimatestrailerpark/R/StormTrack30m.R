@@ -39,7 +39,8 @@ interpolate_storm_track_30m <- function(storm_data) {
       }
       # Create a sequence of datetimes at 30-minute intervals between current and next row
       datetime_seq <- seq(from = storm_subset$datetime[i], to = storm_subset$datetime[i + 1], by = "30 min")
-      datetime_seq<-datetime_seq[-length(datetime_seq)]#remove the last element
+      if(datetime_seq[length(datetime_seq)]==storm_subset$datetime[i+1]){
+        datetime_seq<-datetime_seq[-length(datetime_seq)]}#remove the last element
       # Initialize an empty data frame for the current segment's interpolated data
       segment_interpolated_data <- data.frame(id = storm_id, datetime = datetime_seq)
 
