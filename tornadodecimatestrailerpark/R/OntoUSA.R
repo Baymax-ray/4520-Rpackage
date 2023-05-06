@@ -1,7 +1,7 @@
 #'If the storm landed on USA
 #'
 #'A function for determining whether the storm made landfall in the continental United States
-#'Note:continental US includes Alaska, but excludes Hawaii and the U.S. territories such as Puerto Rico and the U.S. Virgin Islands.
+#'Note:continental US includes Alaska(?), but excludes Hawaii and the U.S. territories such as Puerto Rico and the U.S. Virgin Islands.
 #'No use of the unreliable record identifier variable for this part.
 #'Return true if it landed in the continental United States, false otherwise.
 #'
@@ -17,6 +17,7 @@ storm_US_landfall <- function(storm_data,storm_id) {
   storm_subset <- storm_data[storm_data$id == storm_id, ]
 
   # Get US boundaries from the maps package
+  # Currently this does not include alaska
   us_map <- map("usa", fill = TRUE, plot = FALSE,region="main")
 
   # Convert the US boundaries to a data frame
