@@ -17,8 +17,7 @@ storm_US_landfall <- function(storm_data,storm_id) {
   storm_subset <- storm_data[storm_data$id == storm_id, ]
 
   # Get US boundaries from the maps package
-  # Currently this does not include alaska
-  us_map <- map("usa", fill = TRUE, plot = FALSE,region="main")
+  us_map <- map("state", plot = FALSE)
 
   # Convert the US boundaries to a data frame
   us_boundary <- data.frame(x = us_map$x, y = us_map$y)
