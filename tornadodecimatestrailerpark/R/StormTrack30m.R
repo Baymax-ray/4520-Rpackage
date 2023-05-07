@@ -56,7 +56,7 @@ interpolate_storm_track_30m <- function(storm_data) {
         }
         #from datetime_seq extract time and date
         else if (column_name == "time") {
-          interpolated_values <- strptime(datetime_seq, "%H%M")
+          interpolated_values <- strftime(datetime_seq, "%H%M")
         }
         else if (column_name == "date") {
           interpolated_values <- strftime(datetime_seq, "%Y%m%d")
