@@ -59,7 +59,7 @@ interpolate_storm_track_30m <- function(storm_data) {
           interpolated_values <- strptime(datetime_seq, "%H%M")
         }
         else if (column_name == "date") {
-          interpolated_values <- strptime(datetime_seq, "%Y%m%d")
+          interpolated_values <- strftime(datetime_seq, "%Y%m%d")
         }
         else{
           # for other columns, fill with the same value
