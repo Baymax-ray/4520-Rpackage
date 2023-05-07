@@ -4,10 +4,10 @@
 \alias{format}
 \title{Format the hurdat dataset in the data directory}
 \usage{
-format(file)
+format(dat)
 }
 \arguments{
-\item{file}{the text file to be formatted}
+\item{dat}{the text file to be formatted}
 }
 \value{
 the formatted data frame save as RData

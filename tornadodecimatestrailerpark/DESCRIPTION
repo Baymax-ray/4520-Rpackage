@@ -14,7 +14,7 @@ Imports:
     maps,
     httr,
     jsonlite,
-    ggplot,
+    ggplot2,
     maps
 RoxygenNote: 7.2.3
 Suggests: 
