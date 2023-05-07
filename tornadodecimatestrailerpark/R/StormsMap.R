@@ -5,11 +5,10 @@
 #'
 #'@param ids id of the storm
 #'@return Null
-#'@example
+#'@examples
 #'plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
 #'@export
 plot_storm_tracks <- function(storm_data, storm_ids) {
-
   # Filter the storm data to include only the selected storm_ids
   selected_storms <- storm_data[storm_data$id %in% storm_ids, ]
   # create error message if any of the storm_ids are not in the data

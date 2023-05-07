@@ -13,8 +13,10 @@ LazyData: true
 Imports:
     maps,
     httr,
-    jsonlite
-RoxygenNote: 7.1.1
+    jsonlite,
+    ggplot,
+    maps
+RoxygenNote: 7.2.3
 Suggests: 
     rmarkdown,
     knitr,

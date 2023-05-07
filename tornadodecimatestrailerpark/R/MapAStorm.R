@@ -8,8 +8,8 @@
 #'@param storm_data data frame of storm data
 #'@param row_index row index of the storm to plot
 #'@return Null
-#'@example
-#' plot_storm(your_storm_data, 1)
+#'@examples
+#'plot_storm(your_storm_data, 1)
 #'@export
 plot_storm <- function(storm_data, row_index) {
   # Extract the data for the specified row

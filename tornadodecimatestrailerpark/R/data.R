@@ -30,4 +30,4 @@
 #'     \item{64_wind_radii_northwestern}{64 kt wind radii maximum extent in northwestern quadrant (in nautical miles)}
 #'     \item{radius_max_wind}{radius of Maximum Wind (in nautical miles)}
 #' }
-"hurdat"
+"data"

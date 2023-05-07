@@ -8,10 +8,9 @@
 #'@param storm_data data frame of storm data
 #'@param storm_id id of this storm
 #'@return true or false
-#'@example
+#'@examples
 #'IfLandfall<-storm_US_landfall(data,"AL122007")
 #'@export
-
 storm_US_landfall <- function(storm_data,storm_id) {
   # Extract the data
   storm_subset <- storm_data[storm_data$id == storm_id, ]
