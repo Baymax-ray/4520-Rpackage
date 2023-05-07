@@ -27,8 +27,11 @@ format <- function(dat){
   data$V5= suppressWarnings(as.numeric(substr(data$V5,1,nchar(data$V5)-1)))
   data$V6= suppressWarnings(-as.numeric(substr(data$V6,1,nchar(data$V6)-1)))
   data[data == -999] <- NA
-  data[data == -99] <- NA
   colnames(data)=c("id","name","date","time","record_identifier","status","latitude","longitude","max_wind","min_pressure","34_wind_radii_northeastern","34_wind_radii_southeastern","34_wind_radii_southwestern","34_wind_radii_northwestern","50_wind_radii_northeastern","50_wind_radii_southeastern","50_wind_radii_southwestern","50_wind_radii_northwestern","64_wind_radii_northeastern","64_wind_radii_southeastern","64_wind_radii_southwestern","64_wind_radii_northwestern","radius_max_wind")
+  data$max_wind <- ifelse(data$max_wind == -99, NA, data$max_wind)
+  w=which(abs(data$longitude)>180)
+  ori=data$longitude[w]
+  data$longitude[w]=360+ori
   #rownames(data) <- c(1 : nrow(data))
   return(data)
 }

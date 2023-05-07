@@ -10,4 +10,10 @@ test_that( "interpolate_storm_track_30m function looks ok", {
   expect_equal(
     interpolated$time[2],"0030"
   )
+  expect_equal(
+    interpolated$latitude[2],28
+  )
+  expect_equal(
+    interpolated$longitude[2],-94.85
+  )
 })

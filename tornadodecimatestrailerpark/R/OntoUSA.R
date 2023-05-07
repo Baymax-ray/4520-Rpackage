@@ -16,7 +16,7 @@ storm_US_landfall <- function(storm_data,storm_id) {
   storm_subset <- storm_data[storm_data$id == storm_id, ]
 
   # Get US boundaries from the maps package
-  us_map <- map("state", plot = FALSE)
+  us_map <- maps::map("state", plot = FALSE)
 
   # Convert the US boundaries to a data frame
   us_boundary <- data.frame(x = us_map$x, y = us_map$y)
@@ -27,7 +27,7 @@ storm_US_landfall <- function(storm_data,storm_id) {
     longitude <- storm_subset$longitude[i]
 
     # Check if the storm's latitude and longitude are within the US boundaries
-    in_us <- point.in.polygon(point.x = longitude, point.y = latitude, pol.x = us_boundary$x, pol.y = us_boundary$y)
+    in_us <- sp::point.in.polygon(point.x = longitude, point.y = latitude, pol.x = us_boundary$x, pol.y = us_boundary$y)
     # If the storm made landfall in the continental US, return TRUE
     if (in_us == 1) {
       return(TRUE)

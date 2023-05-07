@@ -12,7 +12,7 @@ plot_storm(storm_data, row_index)
 \item{row_index}{row index of the storm to plot}
 }
 \value{
-Null
+missing points of path(0-30)
 }
 \description{
 A function to plot a map that contains a polygon of the storm from the given row.
