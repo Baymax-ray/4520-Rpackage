@@ -4,7 +4,7 @@
 #'The map includes country and US state boundaries.
 #'
 #'@param ids id of the storm
-#'@return Null
+#'@return length of subset
 #'@examples
 #'plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
 #'@export
@@ -28,4 +28,5 @@ plot_storm_tracks <- function(storm_data, storm_ids) {
     # Plot the storm track
     lines(storm_subset$longitude, storm_subset$latitude, col = "red", lwd = 2)
   }
+  return(length(storm_subset))
 }

@@ -10,7 +10,7 @@ plot_storm_tracks(storm_data, storm_ids)
 \item{ids}{id of the storm}
 }
 \value{
-Null
+length of subset
 }
 \description{
 A function for plotting a map of storm tracks for a selection of storms ids in a vector.
