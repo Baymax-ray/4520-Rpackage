@@ -10,7 +10,11 @@
 #'@export
 ace_of_storm <- function(storm_data, storm_id) {
   selected_storm <- storm_data[storm_data$id == storm_id, ]
-  wind_speed <- selected_storm$max_wind
+  my_patterns=c(" 0000"," 0600"," 1200"," 1800")
+  reg=selected_storm[grepl(paste(my_patterns, collapse='|'), selected_storm$time),]
+  # print(nrow(selected_storm))
+  # print(nrow(reg))
+  wind_speed <- reg$max_wind
   ace <- (10^(-4)) * sum(wind_speed^2)
   return(ace)
 }

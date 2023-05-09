@@ -26,6 +26,7 @@ head(data)
 #1.
 storm_2020 <- data[substr(data$date, start = 1, stop = 4) == "2020", "id"]
 storm_ids_2020=unique(storm_2020)
+print(storm_ids_2020)
 plot_storm_tracks(data, storm_ids_2020)
 for (storm_id in storm_ids_2020) {
     # Subset the data for the current storm
@@ -66,6 +67,7 @@ title("Tracks of storms in 2022")
 us_map <- maps::map("state", plot = FALSE)
 us_boundary <- data.frame(x = us_map$x, y = us_map$y)
 names=c("KATRINA","SANDY","HARVEY","IAN")
+index_lst=NULL
 for (name in names){
   storm_subset_katrina <- data[grepl(name, data$name), ]
   landfall_katrina=NULL
@@ -75,12 +77,16 @@ for (name in names){
     in_us <- sp::point.in.polygon(point.x = longitude, point.y = latitude, pol.x = us_boundary$x, pol.y = us_boundary$y)
     landfall_katrina=c(landfall_katrina,in_us)
   }
-  fall=storm_subset_katrina[which(landfall_katrina>=1),]
+  fall=storm_subset_katrina[which(landfall_katrina==1),]
   fall_m=fall[is.na(fall$`34_wind_radii_northeastern`)==F,]
-  index=as.numeric(rownames(fall_m[which(fall_m$max_wind==max(fall_m$max_wind)),]))[1]
-  index2=which(as.numeric(rownames(data))==index)
-  plot_storm_size(data,index2)
+  index=as.numeric(rownames(fall_m[which(fall_m$max_wind==max(fall_m$max_wind)),]))
+  index2=which(as.numeric(rownames(data))==tail(index,1))
+  index_lst=c(index_lst,index2)
 }
+plot_storm_size(data,index_lst[1])
+plot_storm_size(data,index_lst[2])
+plot_storm_size(data,index_lst[3])
+plot_storm_size(data,index_lst[4])
 ```
 
 ```{r}
@@ -100,6 +106,32 @@ colnames(new_data)=c("storm id","storm_name","maximum wind speed","minimum press
 ```
 
 ```{r}
-
+#4.(a)
+years=c("2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022")
+ace_lst=NULL
+for (year in years){
+  storm_2020 <-data[substr(data$date, start = 1, stop = 4) == year,]
+  storm_ids_2020=unique(storm_2020$id)
+  cum=0
+  for (storm_id in storm_ids_2020) {
+      cum=cum+ace_of_storm(storm_2020,storm_id)
+  }
+  ace_lst=c(ace_lst,cum)
+}
+plot(x=years, y=ace_lst)
+#4.(b)
+months=c("01","02","03","04","05","06","07","08","09","10","11","12")
+ace_lst=NULL
+data_after_2000=data[41768:nrow(data),]
+for (month in months){
+  storm_2020 <-data_after_1990[substr(data_after_1990$date, start = 5, stop = 6) == month,]
+  storm_ids_2020=unique(storm_2020$id)
+  cum=0
+  for (storm_id in storm_ids_2020) {
+      cum=cum+ace_of_storm(storm_2020,storm_id)
+  }
+  ace_lst=c(ace_lst,cum)
+}
+plot(x=months, y=ace_lst,ylim=c(0,500))
 ```
 
