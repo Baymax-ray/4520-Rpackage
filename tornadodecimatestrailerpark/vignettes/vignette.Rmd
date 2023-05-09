@@ -27,5 +27,6 @@ head(data)
 storm_2020 <- data[substr(data$date, start = 1, stop = 4) == "2020", "id"]
 storm_ids_2020=unique(storm_2020)
 plot_storm_tracks(data, storm_ids_2020)
+title("Tracks of Storms in 2020")
 ```
 
