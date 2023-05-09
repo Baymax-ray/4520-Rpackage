@@ -80,7 +80,26 @@ for (name in names){
   index=as.numeric(rownames(fall_m[which(fall_m$max_wind==max(fall_m$max_wind)),]))[1]
   index2=which(as.numeric(rownames(data))==index)
   plot_storm_size(data,index2)
-  title("Position and Size of Landfall")
 }
+```
+
+```{r}
+#3.
+unique_storm_ids <- unique(data$id)
+new_data <- data.frame()
+for (storm_id in unique_storm_ids) {
+    storm_subset <- data[data$id == storm_id, ]
+    name=unique(storm_subset$name)
+    max=max(storm_subset$max_wind)
+    min=min(storm_subset$min_pressure)
+    ace=ace_of_storm(data,storm_id)
+    landfall=storm_US_landfall(data,storm_id)
+    new_data=rbind(new_data,c(storm_id,name,max,min,landfall,ace))
+}
+colnames(new_data)=c("storm id","storm_name","maximum wind speed","minimum pressure","indicator for landfall","accumulated cyclone energy")
+```
+
+```{r}
+
 ```
 
