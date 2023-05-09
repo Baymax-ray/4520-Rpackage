@@ -2,8 +2,8 @@
 #'
 #'A function to plot a map that contains a polygon of the storm from the given row.
 #'Use the 34(blue), 50(green), and 64(orange) knot extent variables to determine the polygon.
-#'1 nautical mile ï¿½? 1/60 degrees of latitude
-#'1 nautical mile ï¿½? 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
+#'1 nautical mile ï¿?? 1/60 degrees of latitude
+#'1 nautical mile ï¿?? 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
 #'
 #'@param storm_data data frame of storm data
 #'@param row_index row index of the storm to plot
@@ -83,8 +83,8 @@ plot_storm_size <- function(storm_data, row_index) {
               extent_64_ne_lo, extent_64_se_lo, -extent_64_sw_lo, -extent_64_nw_lo,10)
 
   # Create a ggplot object with the base map
-  p <- ggplot2::ggplot() + ggplot2::geom_polygon(data = world_map, ggplot2::aes(x = longitude, y = latitude, group = group), fill = "lightgrey", color = "black") +
-    ggplot2::coord_fixed(1.3, xlim = c(longitude-offset-1, longitude+offset+1), ylim = c(latitude-offset-1, latitude+offset+1)) +
+  p <- ggplot2::ggplot() + ggplot2::geom_polygon(data = world_map, ggplot2::aes(x = long, y = lat, group = group), fill = "lightgrey", color = "black") +
+    ggplot2::coord_fixed(1.3, xlim = c(longitude-offset, longitude+offset), ylim = c(latitude-offset, latitude+offset)) +
     ggplot2::theme_classic()
 
   # Add storm position and extent path
@@ -98,5 +98,3 @@ plot_storm_size <- function(storm_data, row_index) {
   # Display the plot
   suppressWarnings(print(p))
 }
-
-
