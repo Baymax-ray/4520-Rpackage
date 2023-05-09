@@ -7,6 +7,7 @@
 #'@return NULL
 #'@examples
 #'plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
+#'@import maps
 #'@export
 plot_storm_tracks <- function(storm_data, storm_ids) {
   # Filter the storm data to include only the selected storm_ids
@@ -17,8 +18,8 @@ plot_storm_tracks <- function(storm_data, storm_ids) {
   }
 
   # Create a base map with country and US state boundaries
-  maps::map("world", interior = TRUE)
-  maps::map("state", add = TRUE, interior = TRUE)
+  map("world", interior = TRUE)
+  map("state", add = TRUE, interior = TRUE)
 
   # Loop through the unique storm names in the selected storms
   for (storm_id in unique(selected_storms$id)) {
