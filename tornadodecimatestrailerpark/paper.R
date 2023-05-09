@@ -33,8 +33,24 @@ summary(model)
 
 
 # only data with status=HU/TS/TD
-tropical_cyclones <- data[data$status %in% c("HU","TS","TD"),]
-a<-data$status[1]
-b<-data[grepl("HU"),data$status]
+tropical_cyclones <- data[grepl("HU|TS|TD", data$status), ]
+unique_tropical_cyclones_data <- tropical_cyclones[!duplicated(tropical_cyclones$id),]
+ace_per_storm <- sapply(unique_tropical_cyclones_data$id, function(id) ace_of_storm(tropical_cyclones, id))
+unique_year <- as.numeric(substr(unique_tropical_cyclones_data$date, 1, 4))
+
+
+# Combine storm years and ACEs into a data frame
+yearly_ace_data <- data.frame(year = unique_year, ace = ace_per_storm)
+
+# Sum ACEs per year
+yearly_ace_sum <- aggregate(ace ~ year, data = yearly_ace_data, sum)
+# train a linear model
+model <- lm(ace ~ year, data = yearly_ace_sum)
+summary(model)
+
+# I define a tropical cyclone has a status of HU/TS/TD. I define intensity to be the sum of accumulated cyclone energy.
+# I set the time period to be one year. If a hurricane exists for more than one year, it counts for the first year.
+# I use a linear model to fit sum of accumulated cyclone energy per year. The model is: accumulated cyclone energy = b0 + b1 * year, where b0 is the intercept, and b1 is the coefficient of the year variable.
+# The estimated coefficient of year is 0.39219 with a p-value of 3.66e-06. Its p-value is statistically significant (p < 0.05), so the intensity of tropical cyclones is increasing over time.
 
 
