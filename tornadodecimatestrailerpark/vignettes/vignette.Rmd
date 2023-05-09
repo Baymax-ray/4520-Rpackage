@@ -63,7 +63,24 @@ title("Tracks of storms in 2022")
 ```
 ```{r}
 #2.
-storm_subset_katrina <- data[data$id == storm_id, ]
-
+us_map <- maps::map("state", plot = FALSE)
+us_boundary <- data.frame(x = us_map$x, y = us_map$y)
+names=c("KATRINA","SANDY","HARVEY","IAN")
+for (name in names){
+  storm_subset_katrina <- data[grepl(name, data$name), ]
+  landfall_katrina=NULL
+  for (i in 1:nrow(storm_subset_katrina)) {
+    latitude <- storm_subset_katrina$latitude[i]
+    longitude <- storm_subset_katrina$longitude[i]
+    in_us <- sp::point.in.polygon(point.x = longitude, point.y = latitude, pol.x = us_boundary$x, pol.y = us_boundary$y)
+    landfall_katrina=c(landfall_katrina,in_us)
+  }
+  fall=storm_subset_katrina[which(landfall_katrina>=1),]
+  fall_m=fall[is.na(fall$`34_wind_radii_northeastern`)==F,]
+  index=as.numeric(rownames(fall_m[which(fall_m$max_wind==max(fall_m$max_wind)),]))[1]
+  index2=which(as.numeric(rownames(data))==index)
+  plot_storm_size(data,index2)
+  title("Position and Size of Landfall")
+}
 ```
 

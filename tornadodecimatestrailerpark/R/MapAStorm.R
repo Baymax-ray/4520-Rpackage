@@ -83,7 +83,7 @@ plot_storm_size <- function(storm_data, row_index) {
               extent_64_ne_lo, extent_64_se_lo, -extent_64_sw_lo, -extent_64_nw_lo,10)
 
   # Create a ggplot object with the base map
-  p <- ggplot2::ggplot() + ggplot2::geom_polygon(data = world_map, ggplot2::aes(x = longitude, y = latitude, group = group), fill = "lightgrey", color = "black") +
+  p <- ggplot2::ggplot() + ggplot2::geom_polygon(data = world_map, ggplot2::aes(x = long, y = lat, group = group), fill = "lightgrey", color = "black") +
     ggplot2::coord_fixed(1.3, xlim = c(longitude-offset-1, longitude+offset+1), ylim = c(latitude-offset-1, latitude+offset+1)) +
     ggplot2::theme_classic()
 
