@@ -10,7 +10,7 @@
 #'@export
 plot_storm_tracks <- function(storm_data, storm_ids,return=FALSE) {
   # Filter the storm data to include only the selected storm_ids
-  selected_storms <- storm_data[storm_data$id %in% storm_ids, ]
+  selected_storms <- storm_data[storm_data$id == storm_ids, ]
   # create error message if any of the storm_ids are not in the data
   if (length(unique(selected_storms$id)) != length(storm_ids)) {
     stop("One or more of the storm ids is not in the data")

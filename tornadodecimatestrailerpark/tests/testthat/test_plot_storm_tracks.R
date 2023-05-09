@@ -1,7 +1,5 @@
 test_that( "plot_storm_tracks function looks ok", {
-  len=plot_storm_tracks(data,"AL011851",return=T)
-  expect_equal(
-    len,23
-  )
+  expect_error(plot_storm_tracks(storm_data, "BL011851"), "One or more of the storm ids is not in the data")
+
 
 })

@@ -9,7 +9,7 @@
 #'ace= ace_of_storm(storm_data,"AL122007")
 #'@export
 ace_of_storm <- function(storm_data, storm_id) {
-  selected_storm <- storm_data[storm_data$id %in% storm_id, ]
+  selected_storm <- storm_data[storm_data$id == storm_id, ]
   wind_speed <- selected_storm$max_wind
   ace <- (10^(-4)) * sum(wind_speed^2)
   return(ace)

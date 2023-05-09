@@ -2,8 +2,8 @@
 #'
 #'A function to plot a map that contains a polygon of the storm from the given row.
 #'Use the 34(blue), 50(green), and 64(orange) knot extent variables to determine the polygon.
-#'1 nautical mile â‰ˆ 1/60 degrees of latitude
-#'1 nautical mile â‰ˆ 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
+#'1 nautical mile â‰? 1/60 degrees of latitude
+#'1 nautical mile â‰? 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
 #'
 #'@param storm_data data frame of storm data
 #'@param row_index row index of the storm to plot
@@ -14,11 +14,8 @@
 plot_storm <- function(storm_data, row_index) {
   # Extract the data for the specified row
   storm_row <- storm_data[row_index, ]
-  # storm_data=storm_data[43815:53972,]
-  # x=which(storm_data["34_wind_radii_northeastern"]!=0)
-  # y=which(storm_data["50_wind_radii_northeastern"]!=0)
-  # z=which(storm_data["64_wind_radii_northeastern"]!=0)
-  # print(intersect(intersect(x,y),z))
+
+
   # Extract storm position and extent variables
   latitude <- storm_row$latitude
   longitude <- storm_row$longitude
