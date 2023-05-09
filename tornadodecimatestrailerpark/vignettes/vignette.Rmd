@@ -62,6 +62,7 @@ for (storm_id in storm_ids_2022) {
 }
 title("Tracks of storms in 2022")
 ```
+
 ```{r}
 #2.
 us_map <- maps::map("state", plot = FALSE)
@@ -181,5 +182,46 @@ summary(model)
 # I use a linear model to fit sum of accumulated cyclone energy per year. The model is: accumulated cyclone energy = b0 + b1 * year, where b0 is the intercept, and b1 is the coefficient of the year variable.
 # The estimated coefficient of year is 0.39219 with a p-value of 3.66e-06. Its p-value is statistically significant (p < 0.05), so the intensity of tropical cyclones is increasing over time.
 
+```
+
+```{r}
+#7.
+# BBC said "in recent years, tropical storms that make land are persisting far longer"
+# Climate change: Hurricanes get stronger on land as world warms. 2020 Nov 11. BBC News. [accessed 2023 May 9]. https://www.bbc.com/news/science-environment-54902068.
+
+# unique id
+unique_id_data <- data[!duplicated(data$id),]
+# Assuming storm_data is already loaded and storm_US_landfall() function is defined
+unique_id_data$us_landfall <- sapply(unique_id_data$id, storm_US_landfall,storm_data = data)
+# subset of data that only contains storms that made landfall in the US
+landfalling_storms <- data[data$id %in% unique_id_data$id[unique_id_data$us_landfall],]
+landfalling_storms$datetime <- as.POSIXct(paste(landfalling_storms$date, landfalling_storms$time), format = "%Y%m%d %H%M")
+landfalling_storm_durations <- tapply(landfalling_storms$datetime, landfalling_storms$id, function(x) {
+  duration <- difftime(max(x), min(x), units = "hours")
+  return(as.numeric(duration))
+})
+landfalling_storm_years <- sapply(unique(landfalling_storms$id), function(id) {
+  year <- as.numeric(substr(landfalling_storms[landfalling_storms$id == id, "date"][1], 1, 4))
+  return(year)
+})
+
+# Combine storm years and durations into a data frame
+yearly_duration_data <- data.frame(year = landfalling_storm_years, duration = landfalling_storm_durations)
+
+# Compute the average duration per year
+yearly_avg_duration <- aggregate(duration ~ year, data = yearly_duration_data, mean)
+
+# Perform a linear regression
+lm_result <- lm(duration ~ year, data = yearly_avg_duration)
+summary(lm_result)
+
+
+# I define a landfalling hurricane as one that makes landfall in the continental United States.
+# I set the time period to be one year If a hurricane exists for more than one year, it counts for the first year.
+# I count duration of a hurricane in hours. Then I compute the average duration= sum of duration of landfall hurricane in this year/amount of landfall hurricane in this year.
+# I use a linear model to fit average duration of landfall hurricane per year. The model is: average duration = b0 + b1 * year, where b0 is the intercept, and b1 is the coefficient of the year variable.
+# The estimated coefficient of year is 0.3198 with a p-value of 0.00222. Its p-value is statistically significant (p < 0.05), so the duration of landfall hurricane is increasing over time.
+
+#ChatGPT:"As an AI language model, I am not able to provide real-time data or opinions. However, I can provide you with some information on this topic based on the knowledge I have up to September 2021. Recent studies have shown that climate change may be contributing to the increased duration and intensity of tropical storms, which in turn could lead to more damage. Warmer ocean temperatures can provide more energy to fuel storms, making them more powerful. Additionally, rising sea levels can increase the risk of storm surge and coastal flooding during these events. Some research also suggests that storms might be moving more slowly or stalling, which can lead to prolonged periods of heavy rainfall and increased flood risk in affected areas. This was the case with Hurricane Harvey in 2017, which stalled over Texas and caused catastrophic flooding. It is important to note that there is still ongoing research and debate on this topic among scientists, and various factors can contribute to the impacts of individual storms. To definitively answer this question, you would need to look at the most recent research and analyze the trends of tropical storms that make landfall."
 ```
 
