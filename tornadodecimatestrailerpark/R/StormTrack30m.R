@@ -7,7 +7,7 @@
 #'@param df the data frame to be modified
 #'@return the interpolated data frame
 #'@examples
-#'new_df <- interpolate_storm_track_30m(storm_data)
+#'new_df <- interpolate_storm_track_30m(data[1:200,])
 #'head(new_df)
 #'@export
 interpolate_storm_track_30m <- function(storm_data) {

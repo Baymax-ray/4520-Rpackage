@@ -13,7 +13,7 @@
 #'@param dat the text file to be formatted
 #'@return the formatted data frame save as RData
 #'@examples
-#'dat <- read.csv("hurdat2-1851-2022-040723.txt", header= FALSE)
+#'dat <- read.csv("~/4520-Rpackage/tornadodecimatestrailerpark/data/hurdat2-1851-2022-040723.txt", header= FALSE)
 #'format(dat)
 #'@export
 format <- function(dat){

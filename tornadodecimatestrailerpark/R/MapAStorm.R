@@ -9,7 +9,7 @@
 #'@param row_index row index of the storm to plot
 #'@return NULL
 #'@examples
-#'plot_storm_size(your_storm_data, 1)
+#'plot_storm_size(data, 44703)
 #'@import maps
 #'@import ggplot2
 #'@export

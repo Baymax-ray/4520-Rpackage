@@ -6,7 +6,7 @@
 #'@param ids id of the storm
 #'@return NULL
 #'@examples
-#'plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
+#'plot_storm_tracks(data,c("AL122007","AL021929"))
 #'@import maps
 #'@export
 plot_storm_tracks <- function(storm_data, storm_ids) {

@@ -22,6 +22,6 @@ meaningful column names. (see documentation)
 numeric latitude and longitude columns, in degrees north and degrees east, respectively.
 }
 \examples{
-dat <- read.csv("hurdat2-1851-2022-040723.txt", header= FALSE)
+dat <- read.csv("~/4520-Rpackage/tornadodecimatestrailerpark/data/hurdat2-1851-2022-040723.txt", header= FALSE)
 format(dat)
 }

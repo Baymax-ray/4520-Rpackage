@@ -14,5 +14,5 @@ A function for plotting a map of storm tracks for a selection of storms ids in a
 The map includes country and US state boundaries.
 }
 \examples{
-plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
+plot_storm_tracks(data,c("AL122007","AL021929"))
 }

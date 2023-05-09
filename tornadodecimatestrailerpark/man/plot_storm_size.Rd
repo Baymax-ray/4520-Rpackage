@@ -18,5 +18,5 @@ Use the 34(blue), 50(green), and 64(orange) knot extent variables to determine t
 1 nautical mile = 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
 }
 \examples{
-plot_storm_size(your_storm_data, 1)
+plot_storm_size(data, 44703)
 }

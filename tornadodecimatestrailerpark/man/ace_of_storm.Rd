@@ -18,5 +18,5 @@ Energy accumulated cyclone energy of this storm
 A function that returns the accumulated cyclone energy of a given storm
 }
 \examples{
-ace= ace_of_storm(storm_data,"AL122007")
+ace= ace_of_storm(data,"AL122007")
 }

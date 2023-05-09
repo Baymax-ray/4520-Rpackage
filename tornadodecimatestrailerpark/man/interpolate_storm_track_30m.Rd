@@ -18,6 +18,6 @@ Only longitude and latitude will be filled with interpolated value.
 Other columns will be filled with the same value in the preceding row
 }
 \examples{
-new_df <- interpolate_storm_track_30m(storm_data)
+new_df <- interpolate_storm_track_30m(data[1:200,])
 head(new_df)
 }
