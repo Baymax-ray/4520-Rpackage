@@ -2,14 +2,16 @@
 #'
 #'A function to plot a map that contains a polygon of the storm from the given row.
 #'Use the 34(blue), 50(green), and 64(orange) knot extent variables to determine the polygon.
-#'1 nautical mile ???? 1/60 degrees of latitude
-#'1 nautical mile ???? 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
+#'1 nautical mile = 1/60 degrees of latitude
+#'1 nautical mile = 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
 #'
 #'@param storm_data data frame of storm data
 #'@param row_index row index of the storm to plot
 #'@return NULL
 #'@examples
 #'plot_storm_size(your_storm_data, 1)
+#'@import maps
+#'@import ggplot2
 #'@export
 plot_storm_size <- function(storm_data, row_index) {
   # if the index <0 or >nrow(storm_data), return error
@@ -74,7 +76,7 @@ plot_storm_size <- function(storm_data, row_index) {
     edge_points_50 <- rbind(edge_points_50, edge_points_50[1, ])
     edge_points_64 <- rbind(edge_points_64, edge_points_64[1, ])
   # generate map
-  world_map <- ggplot2::map_data("world")
+  world_map <- map_data("world")
   offset<-max(extent_34_ne_la, -extent_34_se_la, -extent_34_sw_la, extent_34_nw_la,
               extent_50_ne_la, -extent_50_se_la, -extent_50_sw_la, extent_50_nw_la,
               extent_64_ne_la, -extent_64_se_la, -extent_64_sw_la, extent_64_nw_la,
@@ -83,14 +85,16 @@ plot_storm_size <- function(storm_data, row_index) {
               extent_64_ne_lo, extent_64_se_lo, -extent_64_sw_lo, -extent_64_nw_lo,10)
 
   # Create a ggplot object with the base map
-  p <- ggplot2::ggplot() + ggplot2::geom_polygon(data = world_map, ggplot2::aes(x = long, y = lat, group = group), fill = "lightgrey", color = "black") + ggplot2::coord_fixed(1.3, xlim = c(longitude-offset, longitude+offset), ylim = c(latitude-offset, latitude+offset)) +ggplot2::theme_classic()
+  p <- ggplot() + geom_polygon(data = world_map, aes(x = long, y = lat, group = group), fill = "lightgrey", color = "black") +
+    coord_fixed(1.3, xlim = c(longitude-offset, longitude+offset), ylim = c(latitude-offset, latitude+offset)) +
+    theme_classic()
 
   # Add storm position and extent path
   p <- p +
-    ggplot2::geom_point(ggplot2::aes(x = longitude, y = latitude), color = "red", size = 2) +
-    ggplot2::geom_path(data = edge_points_34, ggplot2::aes(x = longitude, y = latitude), color = "blue") +
-    ggplot2::geom_path(data = edge_points_50, ggplot2::aes(x = longitude, y = latitude), color = "green") +
-    ggplot2::geom_path(data = edge_points_64, ggplot2::aes(x = longitude, y = latitude), color = "orange")
+    geom_point(aes(x = longitude, y = latitude), color = "red", size = 2) +
+    geom_path(data = edge_points_34, aes(x = longitude, y = latitude), color = "blue") +
+    geom_path(data = edge_points_50, aes(x = longitude, y = latitude), color = "green") +
+    geom_path(data = edge_points_64, aes(x = longitude, y = latitude), color = "orange")
 
 
   # Display the plot

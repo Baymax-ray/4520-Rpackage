@@ -14,8 +14,8 @@ plot_storm_size(storm_data, row_index)
 \description{
 A function to plot a map that contains a polygon of the storm from the given row.
 Use the 34(blue), 50(green), and 64(orange) knot extent variables to determine the polygon.
-1 nautical mile �? 1/60 degrees of latitude
-1 nautical mile �? 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
+1 nautical mile = 1/60 degrees of latitude
+1 nautical mile = 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
 }
 \examples{
 plot_storm_size(your_storm_data, 1)
