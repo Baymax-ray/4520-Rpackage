@@ -27,6 +27,43 @@ head(data)
 storm_2020 <- data[substr(data$date, start = 1, stop = 4) == "2020", "id"]
 storm_ids_2020=unique(storm_2020)
 plot_storm_tracks(data, storm_ids_2020)
-title("Tracks of Storms in 2020")
+for (storm_id in storm_ids_2020) {
+    # Subset the data for the current storm
+    storm_start <- data[which(data$id == storm_id)[1], ]
+    lat=storm_start$latitude
+    long=storm_start$longitude
+    name=storm_start$name
+    text(long,lat,name,cex=0.25)
+}
+title("Tracks of storms in 2020")
+storm_2021 <- data[substr(data$date, start = 1, stop = 4) == "2021", "id"]
+storm_ids_2021=unique(storm_2021)
+plot_storm_tracks(data, storm_ids_2021)
+for (storm_id in storm_ids_2021) {
+    # Subset the data for the current storm
+    storm_start <- data[which(data$id == storm_id)[1], ]
+    lat=storm_start$latitude
+    long=storm_start$longitude
+    name=storm_start$name
+    text(long,lat,name,cex=0.25)
+}
+title("Tracks of storms in 2021")
+storm_2022 <- data[substr(data$date, start = 1, stop = 4) == "2022", "id"]
+storm_ids_2022=unique(storm_2022)
+plot_storm_tracks(data, storm_ids_2022)
+for (storm_id in storm_ids_2022) {
+    # Subset the data for the current storm
+    storm_start <- data[which(data$id == storm_id)[1], ]
+    lat=storm_start$latitude
+    long=storm_start$longitude
+    name=storm_start$name
+    text(long,lat,name,cex=0.25)
+}
+title("Tracks of storms in 2022")
+```
+```{r}
+#2.
+storm_subset_katrina <- data[data$id == storm_id, ]
+
 ```
 
