@@ -11,3 +11,4 @@ plot_storm(data, 43825)
 plot_storm(data, 30480)
 storm_US_landfall(data,"AL122007")
 ace_of_storm(data,"AL122007")
+?interpolate_storm_track_30m

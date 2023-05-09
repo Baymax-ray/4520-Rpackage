@@ -1,0 +1,31 @@
+---
+title: "vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(tornadodecimatestrailerpark)
+```
+
+```{r}
+data("hurdat")
+head(data)
+```
+```{r}
+#1.
+storm_2020 <- data[substr(data$date, start = 1, stop = 4) == "2020", "id"]
+storm_ids_2020=unique(storm_2020)
+plot_storm_tracks(data, storm_ids_2020)
+```
+
