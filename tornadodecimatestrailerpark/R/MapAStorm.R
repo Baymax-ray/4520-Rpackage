@@ -2,16 +2,24 @@
 #'
 #'A function to plot a map that contains a polygon of the storm from the given row.
 #'Use the 34(blue), 50(green), and 64(orange) knot extent variables to determine the polygon.
-#'1 nautical mile â‰? 1/60 degrees of latitude
-#'1 nautical mile â‰? 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
+#'1 nautical mile ï¿½? 1/60 degrees of latitude
+#'1 nautical mile ï¿½? 1/(60 * cos(latitude)) degrees of longitude are used for approximations.
 #'
 #'@param storm_data data frame of storm data
 #'@param row_index row index of the storm to plot
-#'@return missing points of path(0-30)
+#'@return NULL
 #'@examples
-#'plot_storm(your_storm_data, 1)
+#'plot_storm_size(your_storm_data, 1)
 #'@export
-plot_storm <- function(storm_data, row_index) {
+plot_storm_size <- function(storm_data, row_index) {
+  # if the index <0 or >nrow(storm_data), return error
+  if (row_index < 0 || row_index > nrow(storm_data)) {
+    stop("row_index must be between 0 and nrow")
+  }
+  # if no columns contains "wind_radii", return error
+  if (!any(grepl("wind_radii", colnames(storm_data)))) {
+    stop("row_index must be a row with wind_radii data")
+  }
   # Extract the data for the specified row
   storm_row <- storm_data[row_index, ]
 
@@ -76,7 +84,7 @@ plot_storm <- function(storm_data, row_index) {
 
   # Create a ggplot object with the base map
   p <- ggplot2::ggplot() + ggplot2::geom_polygon(data = world_map, ggplot2::aes(x = longitude, y = latitude, group = group), fill = "lightgrey", color = "black") +
-    ggplot2::coord_fixed(1.3, xlim = c(longitude-offset, longitude+offset), ylim = c(latitude-offset, latitude+offset)) +
+    ggplot2::coord_fixed(1.3, xlim = c(longitude-offset-1, longitude+offset+1), ylim = c(latitude-offset-1, latitude+offset+1)) +
     ggplot2::theme_classic()
 
   # Add storm position and extent path
@@ -89,7 +97,6 @@ plot_storm <- function(storm_data, row_index) {
 
   # Display the plot
   suppressWarnings(print(p))
-  return(sum(is.na(edge_points_34)+is.na(edge_points_50)+is.na(edge_points_64)))
 }
 
 

@@ -4,7 +4,7 @@
 #'The map includes country and US state boundaries.
 #'
 #'@param ids id of the storm
-#'@return Null
+#'@return NULL
 #'@examples
 #'plot_storm_tracks(your_storm_data, c("storm_id_1", "storm_id_2"))
 #'@export

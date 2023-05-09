@@ -9,9 +9,6 @@ plot_storm_tracks(storm_data, storm_ids)
 \arguments{
 \item{ids}{id of the storm}
 }
-\value{
-length of subset
-}
 \description{
 A function for plotting a map of storm tracks for a selection of storms ids in a vector.
 The map includes country and US state boundaries.
