@@ -29,6 +29,7 @@ plot_storm_tracks <- function(storm_data, storm_ids) {
     storm_subset <- selected_storms[selected_storms$id == storm_id, ]
 
     # Plot the storm track
-    lines(storm_subset$longitude, storm_subset$latitude, col = "red", lwd = 2)
+    # with a random color but not white or black
+    lines(storm_subset$longitude, storm_subset$latitude, col = sample(c(1:7, 9:15), 1), lwd = 2)
   }
 }
