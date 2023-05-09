@@ -132,6 +132,6 @@ for (month in months){
   }
   ace_lst=c(ace_lst,cum)
 }
-plot(x=months, y=ace_lst,ylim=c(0,500))
+plot(x=months, y=ace_lst,ylim=c(0,400))
 ```
 
