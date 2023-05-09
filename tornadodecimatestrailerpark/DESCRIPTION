@@ -2,9 +2,9 @@ Package: tornadodecimatestrailerpark
 Type: Package
 Title: Tropical Cyclone Data R Package
 Version: 0.1.0
-Author@R: person("Ray", "Fang", email = "fangjiarui2002@outlook.com",
+Authors@R: c(person("Ray", "Fang", email = "fangjiarui2002@outlook.com",
   role = c("aut", "cre")), person("Leqi", "Tian", email = "lt438@cornell.edu",
-  role = c("aut", "cre"))
+  role = c("aut")))
 Description: an R package related to the HURDAT Atlantic basin tropical cyclone data (https://www.nhc.noaa.gov/data/#hurdat). 
     A tropical cyclone is generic term for a strong circulating storm. A tropical storm is a weaker tropical cyclone, and a hurricane is a stronger tropical cyclone..
 License: GPL-2

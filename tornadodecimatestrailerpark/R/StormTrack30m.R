@@ -4,7 +4,7 @@
 #'Only longitude and latitude will be filled with interpolated value.
 #'Other columns will be filled with the same value in the preceding row
 #'
-#'@param df the data frame to be modified
+#'@param storm_data the data frame to be modified
 #'@return the interpolated data frame
 #'@examples
 #'new_df <- interpolate_storm_track_30m(data[1:200,])

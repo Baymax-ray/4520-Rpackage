@@ -3,7 +3,8 @@
 #'A function for plotting a map of storm tracks for a selection of storms ids in a vector.
 #'The map includes country and US state boundaries.
 #'
-#'@param ids id of the storm
+#'@param storm_data the data frame to be modified
+#'@param storm_ids id of the storm
 #'@return NULL
 #'@examples
 #'plot_storm_tracks(data,c("AL122007","AL021929"))

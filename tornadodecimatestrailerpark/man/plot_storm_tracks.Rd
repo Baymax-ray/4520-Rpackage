@@ -7,7 +7,9 @@
 plot_storm_tracks(storm_data, storm_ids)
 }
 \arguments{
-\item{ids}{id of the storm}
+\item{storm_data}{the data frame to be modified}
+
+\item{storm_ids}{id of the storm}
 }
 \description{
 A function for plotting a map of storm tracks for a selection of storms ids in a vector.

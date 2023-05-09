@@ -7,7 +7,7 @@
 interpolate_storm_track_30m(storm_data)
 }
 \arguments{
-\item{df}{the data frame to be modified}
+\item{storm_data}{the data frame to be modified}
 }
 \value{
 the interpolated data frame

@@ -9,7 +9,7 @@ ace_of_storm(storm_data, storm_id)
 \arguments{
 \item{storm_data}{data frame of storm data}
 
-\item{id}{id of the storm to calculate}
+\item{storm_id}{id of the storm to calculate}
 }
 \value{
 Energy accumulated cyclone energy of this storm

@@ -3,7 +3,7 @@
 #'A function that returns the accumulated cyclone energy of a given storm
 #'
 #'@param storm_data data frame of storm data
-#'@param id id of the storm to calculate
+#'@param storm_id id of the storm to calculate
 #'@return Energy accumulated cyclone energy of this storm
 #'@examples
 #'ace= ace_of_storm(data,"AL122007")
